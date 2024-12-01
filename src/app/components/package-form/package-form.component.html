@@ -1,0 +1,56 @@
+<div class="max-w-md mx-auto my-10 text-white">
+    <h2 class="text-3xl font-bold mb-5">Create Package 🛠️</h2>
+    <form [formGroup]="packageForm">
+        <div class="relative z-0 w-full mb-5 group">
+            <input type="text" name="packageName" id="packageName"
+                class="block w-full py-2.5 px-4 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
+                placeholder="Package Name" formControlName="packageName" autocomplete="off" />
+        </div>
+        <div class="relative z-0 w-full mb-5 group">
+            <input type="number" name="shippingCost" id="shippingCost"
+                class="block w-full py-2.5 px-4 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 focus:outline-none"
+                placeholder="Shipping Cost" formControlName="shippingCost" />
+        </div>
+        <div class="relative z-0 w-full mb-5 group">
+            <label class="block mb-2 text-sm font-medium text-gray-200">Products</label>
+            <ul class="list-disc pl-5">
+                <li *ngFor="let product of products">
+                    <div class="flex items-center mb-2">
+                        <span class="mr-4">{{ product.name }} - ${{ product.price }} x {{ product.amount }}</span>
+                        
+                        <button type="button" (click)="onAddProduct(product)" class="text-blue-600 hover:underline mr-2">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        
+                        <button type="button" (click)="onDeleteProduct(product.id)" class="text-red-600 hover:underline">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="relative z-0 w-full mb-5 group">
+            <label class="block mb-2 text-sm font-medium text-gray-200">Selected Products</label>
+            <ul class="list-disc pl-5">
+                <li *ngFor="let product of selectedProducts">
+                    <div class="flex items-center mb-2">
+                        <span class="mr-4">{{ product.name }} - ${{ product.price }} x {{ product.amount }}</span>
+                        <button type="button" (click)="onRemoveProduct(product.id)" class="text-red-600 hover:underline">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="relative z-0 w-full mb-5 group">
+            <label class="block mb-2 text-sm font-medium text-gray-200">Total Cost</label>
+            <input type="text" name="totalCost" id="totalCost"
+                class="block w-full py-2.5 px-4 text-sm text-gray-900 bg-gray-100 rounded-lg border border-gray-300 focus:outline-none"
+                [value]="totalCost" readonly />
+        </div>
+        <button type="submit" (click)="onSubmit()"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+            Create Package
+        </button>
+    </form>
+</div>

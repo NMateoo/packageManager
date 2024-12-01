@@ -1,0 +1,24 @@
+<div class="max-w-4xl mx-auto my-10 border p-5 px-20 rounded-md backdrop-blur-sm bg-black/10 border-gray-300/30 shadow-xl  transition-all ease-in-out duration-500">
+    <h2 class="text-3xl font-bold mb-5">Package List 📦</h2>
+    <ul class="list-disc pl-5 text-xl">
+        <li *ngIf="packages.length === 0" class="list-none text-lg">Ups... It seems that you do not have any package created.</li>
+        <li *ngFor="let pkg of packages" class="border p-5 px-5 list-none border-gray-500/50 rounded-md">
+            <div class="mb-4">
+                <div class="flex items-center mb-2">
+                    <div class="flex-1">
+                        <strong>{{ pkg.packageName }}</strong> - Total Cost: ${{ pkg.totalCost }}
+                    </div>
+                    <button type="button" (click)="onDeletePackage(pkg.id)" class="text-red-600 ml-4 hover:text-red-800">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+                <ul class="list-disc pl-5">
+                    <li *ngFor="let product of pkg.products" class="italic list-none">
+                        {{ product.name }} - Price: ${{ product.price }} - 
+                        <span class="font-bold"> Final Price: ${{ product.finalPrice }}</span>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
